@@ -89,7 +89,7 @@ public class StoreController {
 
     @PostMapping("/removeFromCart")
     public ResponseEntity<Object> removeToCart(@RequestParam String userId, @RequestParam String productId) {
-        if(productService.removeFromCart(Long.valueOf(userId), Long.valueOf(productId))){
+        if(productService.removeFromCart(Long.valueOf(productId), Long.valueOf(userId))){
             return ResponseEntity.ok("Product removed successfully");
         }
         return ResponseEntity.badRequest().body("Product or user not found");
