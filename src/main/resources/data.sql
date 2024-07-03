@@ -1,0 +1,8 @@
+insert into users (login, password) values ('admin', '$2a$10$p.ehBJpo9KVIoOoEVoBiz.x3ldZUOjAUnVRTXKO/oYUG3wnWvOFOq')
+insert into users (login, password) values ('user', '$2a$10$Ww13e1f1UiRKdEYfl/flVO5v6e.gWi2nb8Fkj2CLBBFva0AnXvOvm')
+insert into roles (name) values ('ADMIN')
+insert into roles (name) values ('USER')
+insert into user_roles (user_id, role_id) values (1, 1)
+insert into user_roles (user_id, role_id) values (2, 2)
+insert into products (name, description) values ('asdf', 'asdf')
+insert into products (name, description) values ('ba', 'ba')
