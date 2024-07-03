@@ -81,7 +81,7 @@ public class StoreController {
 
     @PostMapping("/addToCart")
     public ResponseEntity<Object> addToCart(@RequestParam String userId, @RequestParam String productId) {
-        if(productService.addToCart(Long.valueOf(userId), Long.valueOf(productId))){
+        if(productService.addToCart(Long.valueOf(productId), Long.valueOf(userId))){
             return ResponseEntity.ok("Product added successfully");
         }
         return ResponseEntity.badRequest().body("Product or user not found");
@@ -115,7 +115,7 @@ public class StoreController {
     @DeleteMapping("/deleteProduct")
     public ResponseEntity<Object> deleteProduct(@RequestParam Long userId, @RequestParam Long productId) {
         if(isAdmin(userId)){
-            if(productService.deleteProduct(productId)){
+            if(productService.deleteProduct(userId, productId)){
                 return ResponseEntity.ok("Product deleted successfully");
             }
             return ResponseEntity.badRequest().body("Product not found");

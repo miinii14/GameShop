@@ -11,7 +11,7 @@ public interface ProductService {
     List<Product> getAllProducts();
     Product getProduct(Long id);
     boolean createProduct(Product product);
-    boolean deleteProduct(Long productId);
+    boolean deleteProduct(Long userId, Long productId);
     boolean addToCart(Long productId, Long userId);
     boolean buyProducts(Long userId);
     boolean removeFromCart(Long productId, Long userId);

@@ -51,19 +51,7 @@ public class CustomProductService implements ProductService{
         }
     }
 
-    @Override
-    public boolean deleteProduct(Long productId) {
-        try {
-            Product product = productRepository.findById(productId).orElse(null);
-            if(product == null){
-                return false;
-            }
-            productRepository.delete(product);
-            return true;
-        } catch(Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
     @Override
     public boolean addToCart(Long productId, Long userId) {
@@ -116,6 +104,24 @@ public class CustomProductService implements ProductService{
             userRepository.save(user);
             return true;
         }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean deleteProduct(Long userId, Long productId) {
+        try {
+            Product product = productRepository.findById(productId).orElse(null);
+            User user = userRepository.findById(userId).orElse(null);
+            if(product == null || user == null){
+                return false;
+            }
+            user.getCart().remove(product);
+            user.getProducts().remove(product);
+            userRepository.save(user);
+            productRepository.delete(product);
+            return true;
+        } catch(Exception e) {
             throw new RuntimeException(e);
         }
     }
